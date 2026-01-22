@@ -17,6 +17,7 @@ import AnimatedSection, { StaggerContainer, StaggerItem } from '../components/An
 import CountdownTimer from '../components/CountdownTimer';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import DentistCard from '../components/DentistCard';
+import FloatingTooth, { FloatingPlus } from '../components/DentalAnimations';
 // Import both API and mock data for fallback
 import { dentistsApi, eventsApi, reviewsApi } from '../lib/api';
 import { dentists as mockDentists, upcomingEvent as mockEvent, reviews as mockReviews } from '../data/mockData';
@@ -105,6 +106,18 @@ export default function Home() {
                         animate={{ rotate: 360 }}
                         transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
                     />
+
+                    {/* Floating dental elements */}
+                    <FloatingTooth className="absolute top-32 right-[15%] text-primary-400" size={55} delay={0} />
+                    <FloatingTooth className="absolute top-[40%] left-[8%] text-accent-400" size={40} delay={1.5} />
+                    <FloatingTooth className="absolute bottom-[25%] right-[10%] text-secondary-400" size={50} delay={2.5} />
+                    <FloatingTooth className="absolute top-[20%] left-[20%] text-primary-300" size={35} delay={3} />
+                    <FloatingTooth className="absolute bottom-[35%] left-[5%] text-primary-200" size={30} delay={4} />
+
+                    {/* Medical plus signs */}
+                    <FloatingPlus className="absolute top-[30%] right-[20%] text-primary-300" delay={1} />
+                    <FloatingPlus className="absolute bottom-[40%] left-[25%] text-accent-300" delay={2.5} />
+                    <FloatingPlus className="absolute top-[60%] right-[25%] text-secondary-300" delay={3.5} />
                 </div>
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
@@ -362,8 +375,8 @@ export default function Home() {
                         <StaggerItem>
                             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
                                 <Globe className="w-8 h-8 text-primary-200 mx-auto mb-3" />
-                                <h4 className="font-semibold text-white mb-1">Platform</h4>
-                                <p className="text-primary-100">{upcomingEvent.platform} (Virtual)</p>
+                                <h4 className="font-semibold text-white mb-1">Format</h4>
+                                <p className="text-primary-100">Live In-Person Training</p>
                             </div>
                         </StaggerItem>
                     </StaggerContainer>

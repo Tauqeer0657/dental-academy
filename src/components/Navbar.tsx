@@ -57,7 +57,7 @@ export default function Navbar() {
                                 'font-display font-semibold text-xl transition-colors',
                                 isScrolled ? 'text-text-primary' : 'text-text-primary'
                             )}>
-                                DentalMasters
+                                Lt Dental Academy
                             </span>
                         </Link>
 
@@ -90,7 +90,7 @@ export default function Navbar() {
                         <div className="hidden md:block">
                             <Link to="/register">
                                 <motion.button
-                                    whileHover={{ scale: 1.05 }}
+                                    whileHover={{ scale: 1.05, boxShadow: '0 10px 40px -10px rgba(14, 165, 233, 0.5)' }}
                                     whileTap={{ scale: 0.95 }}
                                     className="btn btn-primary text-sm"
                                 >

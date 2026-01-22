@@ -117,7 +117,7 @@ export const upcomingEvent: WebinarEvent = {
     date: '2026-02-15',
     time: '09:00',
     durationHours: 12,
-    platform: 'Zoom',
+    platform: 'In-Person',
     maxCapacity: 500,
     currentRegistrations: 342,
     basePrice: 499,

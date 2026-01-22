@@ -54,7 +54,7 @@ export default function Footer() {
                                 <span className="text-white font-bold text-xl">D</span>
                             </div>
                             <span className="font-display font-semibold text-2xl">
-                                DentalMasters
+                                Lt Dental Academy
                             </span>
                         </Link>
                         <p className="text-text-muted mb-6 max-w-sm">
@@ -65,11 +65,11 @@ export default function Footer() {
                         {/* Contact Info */}
                         <div className="space-y-3">
                             <a
-                                href="mailto:info@dentalmasters.com"
+                                href="mailto:info@ltdentalacademy.com"
                                 className="flex items-center gap-3 text-text-muted hover:text-white transition-colors"
                             >
                                 <Mail className="w-5 h-5 text-primary-400" />
-                                info@dentalmasters.com
+                                info@ltdentalacademy.com
                             </a>
                             <a
                                 href="tel:+1-800-DENTIST"
@@ -146,7 +146,7 @@ export default function Footer() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <p className="text-text-muted text-sm">
-                            © {currentYear} DentalMasters. All rights reserved.
+                            © {currentYear} Lt Dental Academy. All rights reserved.
                         </p>
 
                         {/* Social Links */}

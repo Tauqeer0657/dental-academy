@@ -116,7 +116,7 @@ export default function About() {
                             </div>
                             <div className="flex items-center gap-2">
                                 <MapPin className="w-5 h-5 text-primary-500" />
-                                <span>Virtual via {upcomingEvent.platform}</span>
+                                <span>Live In-Person Training</span>
                             </div>
                         </div>
                     </AnimatedSection>
@@ -269,28 +269,28 @@ export default function About() {
                 </div>
             </section>
 
-            {/* Technical Requirements */}
+            {/* What to Bring */}
             <section className="section-padding bg-background">
                 <div className="max-w-4xl mx-auto text-center">
                     <AnimatedSection>
                         <h2 className="text-3xl font-bold text-text-primary mb-8">
-                            Technical Requirements
+                            What to Bring
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="bg-white rounded-2xl p-6 shadow-card">
                                 <Zap className="w-8 h-8 text-primary-500 mx-auto mb-3" />
-                                <h4 className="font-semibold text-text-primary mb-2">Internet</h4>
-                                <p className="text-sm text-text-secondary">Stable broadband connection (10+ Mbps recommended)</p>
+                                <h4 className="font-semibold text-text-primary mb-2">Notebook</h4>
+                                <p className="text-sm text-text-secondary">Take notes during the 12-hour live session</p>
                             </div>
                             <div className="bg-white rounded-2xl p-6 shadow-card">
                                 <Video className="w-8 h-8 text-primary-500 mx-auto mb-3" />
-                                <h4 className="font-semibold text-text-primary mb-2">Device</h4>
-                                <p className="text-sm text-text-secondary">Computer, tablet, or smartphone with {upcomingEvent.platform} app</p>
+                                <h4 className="font-semibold text-text-primary mb-2">ID Card</h4>
+                                <p className="text-sm text-text-secondary">Professional ID or registration confirmation</p>
                             </div>
                             <div className="bg-white rounded-2xl p-6 shadow-card">
                                 <Shield className="w-8 h-8 text-primary-500 mx-auto mb-3" />
-                                <h4 className="font-semibold text-text-primary mb-2">Browser</h4>
-                                <p className="text-sm text-text-secondary">Latest Chrome, Firefox, Safari, or Edge</p>
+                                <h4 className="font-semibold text-text-primary mb-2">Enthusiasm</h4>
+                                <p className="text-sm text-text-secondary">Come ready to learn and network!</p>
                             </div>
                         </div>
                     </AnimatedSection>

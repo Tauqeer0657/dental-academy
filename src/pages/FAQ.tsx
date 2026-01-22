@@ -16,13 +16,13 @@ const faqCategories = [
 const faqs = [
     {
         category: 'registration',
-        question: 'How do I register for the webinar?',
+        question: 'How do I register for the training session?',
         answer: 'Simply click the "Register Now" button on any page and complete the 4-step registration form. You\'ll receive a confirmation email with your access details immediately after successful payment.'
     },
     {
         category: 'registration',
         question: 'Can I register multiple attendees from my practice?',
-        answer: 'Yes! We offer group discounts for 3 or more registrations from the same institution. Contact us at groups@dentalmasters.com for special pricing.'
+        answer: 'Yes! We offer group discounts for 3 or more registrations from the same institution. Contact us at groups@ltdentalacademy.com for special pricing.'
     },
     {
         category: 'registration',
@@ -51,13 +51,13 @@ const faqs = [
     },
     {
         category: 'technical',
-        question: 'What platform is the webinar hosted on?',
-        answer: 'The webinar is hosted on Zoom. You\'ll receive a unique access link via email 24 hours before the event and again 1 hour before start time.'
+        question: 'Where is the training session held?',
+        answer: 'This is a live, in-person 12-hour training session. The venue details and full address will be shared via email after your registration is confirmed.'
     },
     {
         category: 'technical',
-        question: 'What are the technical requirements?',
-        answer: 'You\'ll need a stable internet connection (10+ Mbps recommended), a computer/tablet/smartphone, and the Zoom app or a modern web browser (Chrome, Firefox, Safari, or Edge).'
+        question: 'What should I bring to the training session?',
+        answer: 'Please bring a notebook for taking notes, your professional ID or registration confirmation, and any questions you have for our expert speakers. All training materials will be provided at the venue.'
     },
     {
         category: 'technical',
@@ -200,8 +200,8 @@ export default function FAQ() {
                                             setOpenIndex(0);
                                         }}
                                         className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === category.id
-                                                ? 'bg-primary-500 text-white shadow-md'
-                                                : 'bg-white text-text-secondary hover:bg-primary-50 border border-border'
+                                            ? 'bg-primary-500 text-white shadow-md'
+                                            : 'bg-white text-text-secondary hover:bg-primary-50 border border-border'
                                             }`}
                                     >
                                         {category.name}

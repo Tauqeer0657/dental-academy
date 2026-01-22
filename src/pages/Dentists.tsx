@@ -10,7 +10,7 @@ import {
     Play,
     ArrowRight
 } from 'lucide-react';
-import AnimatedSection, { StaggerContainer, StaggerItem } from '../components/AnimatedSection';
+import AnimatedSection from '../components/AnimatedSection';
 import { dentistsApi } from '../lib/api';
 import { dentists as mockDentists } from '../data/mockData';
 import { useApi } from '../hooks/useApi';
@@ -57,17 +57,16 @@ export default function Dentists() {
             {/* Dentist Profiles */}
             <section className="section-padding bg-white">
                 <div className="max-w-6xl mx-auto">
-                    <StaggerContainer className="flex flex-col gap-24">
+                    <div className="flex flex-col gap-24">
                         {dentists.map((dentist, index) => (
-                            <StaggerItem key={dentist.id}>
+                            <div key={dentist.id}>
                                 <motion.article
                                     id={dentist.id}
-                                    className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                                        }`}
-                                    initial={{ opacity: 0, y: 50 }}
+                                    className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
+                                    initial={index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, amount: 0.2 }}
-                                    transition={{ duration: 0.6 }}
+                                    viewport={{ once: true, amount: 0.1 }}
+                                    transition={{ duration: 0.3 }}
                                 >
                                     {/* Image Section */}
                                     <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
@@ -107,9 +106,9 @@ export default function Dentists() {
 
                                             {/* Floating badges */}
                                             <motion.div
-                                                initial={{ opacity: 0, x: 20 }}
+                                                initial={index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                                                 whileInView={{ opacity: 1, x: 0 }}
-                                                transition={{ delay: 0.3 }}
+                                                transition={{ delay: 0.1 }}
                                                 className="absolute -right-4 top-8 bg-white rounded-xl shadow-lg p-4"
                                             >
                                                 <div className="text-center">
@@ -146,16 +145,13 @@ export default function Dentists() {
                                             </h4>
                                             <ul className="space-y-2">
                                                 {dentist.achievements.map((achievement, i) => (
-                                                    <motion.li
+                                                    <li
                                                         key={i}
-                                                        initial={{ opacity: 0, x: -10 }}
-                                                        whileInView={{ opacity: 1, x: 0 }}
-                                                        transition={{ delay: i * 0.1 }}
                                                         className="flex items-start gap-2 text-text-secondary"
                                                     >
                                                         <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2 flex-shrink-0" />
                                                         {achievement}
-                                                    </motion.li>
+                                                    </li>
                                                 ))}
                                             </ul>
                                         </div>
@@ -212,9 +208,9 @@ export default function Dentists() {
                                 {index < dentists.length - 1 && (
                                     <div className="border-t border-border mt-12" />
                                 )}
-                            </StaggerItem>
+                            </div>
                         ))}
-                    </StaggerContainer>
+                    </div>
                 </div>
             </section>
 

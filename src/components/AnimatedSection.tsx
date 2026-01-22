@@ -54,7 +54,7 @@ export default function AnimatedSection({
             animate={isInView ? 'visible' : 'hidden'}
             variants={getVariants(direction)}
             transition={{
-                duration: 0.6,
+                duration: 0.35,
                 delay,
                 ease: [0.4, 0, 0.2, 1],
             }}
@@ -75,7 +75,7 @@ interface StaggerContainerProps {
 export function StaggerContainer({
     children,
     className = '',
-    staggerDelay = 0.1,
+    staggerDelay = 0.05,
 }: StaggerContainerProps) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -113,7 +113,7 @@ export function StaggerItem({ children, className = '' }: StaggerItemProps) {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 },
             }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className={className}
         >
             {children}

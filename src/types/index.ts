@@ -25,7 +25,7 @@ export interface WebinarEvent {
     date: string;
     time: string;
     durationHours: number;
-    platform: 'Zoom' | 'Teams' | 'Meet';
+    platform: 'Zoom' | 'Teams' | 'Meet' | 'In-Person';
     maxCapacity: number;
     currentRegistrations: number;
     basePrice: number;

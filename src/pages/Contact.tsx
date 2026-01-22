@@ -80,7 +80,7 @@ export default function Contact() {
                                     </h3>
                                     <div className="space-y-6">
                                         <a
-                                            href="mailto:info@dentalmasters.com"
+                                            href="mailto:info@ltdentalacademy.com"
                                             className="flex items-start gap-4 group"
                                         >
                                             <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center group-hover:bg-primary-100 transition-colors">
@@ -89,7 +89,7 @@ export default function Contact() {
                                             <div>
                                                 <p className="font-medium text-text-primary">Email</p>
                                                 <p className="text-text-secondary group-hover:text-primary-600 transition-colors">
-                                                    info@dentalmasters.com
+                                                    info@ltdentalacademy.com
                                                 </p>
                                             </div>
                                         </a>
