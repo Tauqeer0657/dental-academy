@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -6,8 +6,7 @@ import {
     Lock,
     Shield,
     ArrowLeft,
-    Check,
-    AlertCircle
+    Check
 } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import { formatCurrency } from '../lib/utils';
@@ -19,7 +18,6 @@ export default function Payment() {
     const location = useLocation();
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
-    const [error, setError] = useState<string | null>(null);
     const [cardNumber, setCardNumber] = useState('');
     const [expiry, setExpiry] = useState('');
     const [cvc, setCvc] = useState('');

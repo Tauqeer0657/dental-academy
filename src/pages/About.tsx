@@ -5,8 +5,6 @@ import {
     Users,
     Award,
     Video,
-    MessageCircle,
-    FileCheck,
     Calendar,
     MapPin,
     CheckCircle,

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Search } from 'lucide-react';
-import AnimatedSection, { StaggerContainer, StaggerItem } from '../components/AnimatedSection';
+import AnimatedSection from '../components/AnimatedSection';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 

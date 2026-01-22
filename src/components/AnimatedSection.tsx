@@ -128,7 +128,7 @@ interface ParallaxProps {
     speed?: number;
 }
 
-export function Parallax({ children, className = '', speed = 0.5 }: ParallaxProps) {
+export function Parallax({ children, className = '' }: ParallaxProps) {
     return (
         <motion.div
             initial={{ y: 0 }}

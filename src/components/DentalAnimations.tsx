@@ -177,8 +177,6 @@ interface AnimatedCounterProps {
 }
 
 export function AnimatedCounter({ value, className = '' }: AnimatedCounterProps) {
-    const numericValue = parseInt(value.replace(/\D/g, '')) || 0;
-    const suffix = value.replace(/[0-9]/g, '');
 
     return (
         <motion.span
