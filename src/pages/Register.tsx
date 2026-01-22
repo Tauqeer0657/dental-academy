@@ -20,7 +20,6 @@ import { cn, formatCurrency } from '../lib/utils';
 import { countries, countryCodes, upcomingEvent as mockEvent } from '../data/mockData';
 import { registrationsApi, eventsApi } from '../lib/api';
 import { useApi } from '../hooks/useApi';
-import { useMutation } from '../hooks/useApi';
 import type { RegistrationFormData, PricingBreakdown } from '../types';
 
 // Form validation schema
@@ -59,7 +58,6 @@ const professionOptions = [
 
 export default function Register() {
     const [currentStep, setCurrentStep] = useState(1);
-    const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
 
     // Fetch event from API
@@ -100,10 +98,46 @@ export default function Register() {
         mode: 'onChange',
     });
 
-    const { watch, trigger, handleSubmit, formState: { errors } } = methods;
-    const formValues = watch();
+    const { trigger, handleSubmit, formState: { errors } } = methods;
 
-    // Calculate pricing whenever form values change
+    // Watch specific fields needed for UI display and pricing
+    const accommodationType = methods.watch('accommodationType');
+    const foodPreference = methods.watch('foodPreference');
+    const certificateType = methods.watch('certificateType');
+    const materialsKit = methods.watch('materialsKit');
+    const networkingDinner = methods.watch('networkingDinner');
+    const fullName = methods.watch('fullName');
+    const email = methods.watch('email');
+    const phone = methods.watch('phone');
+    const countryCode = methods.watch('countryCode');
+    const country = methods.watch('country');
+
+    // Create formValues object for display purposes
+    const formValues = {
+        accommodationType,
+        foodPreference,
+        certificateType,
+        materialsKit,
+        networkingDinner,
+        fullName,
+        email,
+        phone,
+        countryCode,
+        country,
+    };
+
+    // Load saved data from localStorage on mount
+    useEffect(() => {
+        const savedData = localStorage.getItem('registration-form');
+        if (savedData) {
+            const parsed = JSON.parse(savedData);
+            Object.keys(parsed).forEach((key) => {
+                methods.setValue(key as keyof RegistrationFormData, parsed[key]);
+            });
+        }
+    }, [methods]);
+
+    // Calculate pricing whenever relevant form values change
     useEffect(() => {
         const basePrice = upcomingEvent.basePrice || 499;
         const accommodationPrices = { single: 200, shared: 150, none: 0 };
@@ -111,11 +145,11 @@ export default function Register() {
 
         const newPricing: PricingBreakdown = {
             basePrice: basePrice,
-            accommodation: accommodationPrices[formValues.accommodationType as keyof typeof accommodationPrices] || 0,
-            food: foodPrices[formValues.foodPreference as keyof typeof foodPrices] || 0,
-            certificate: formValues.certificateType === 'hardcopy' ? 25 : 0,
-            materialsKit: formValues.materialsKit ? 75 : 0,
-            networkingDinner: formValues.networkingDinner ? 100 : 0,
+            accommodation: accommodationPrices[accommodationType as keyof typeof accommodationPrices] || 0,
+            food: foodPrices[foodPreference as keyof typeof foodPrices] || 0,
+            certificate: certificateType === 'hardcopy' ? 25 : 0,
+            materialsKit: materialsKit ? 75 : 0,
+            networkingDinner: networkingDinner ? 100 : 0,
             discount: 0,
             total: 0,
         };
@@ -130,22 +164,13 @@ export default function Register() {
             newPricing.discount;
 
         setPricing(newPricing);
-    }, [formValues, upcomingEvent.basePrice]);
+    }, [accommodationType, foodPreference, certificateType, materialsKit, networkingDinner, upcomingEvent.basePrice]);
 
-    // Save to localStorage
+    // Save to localStorage when form values change
     useEffect(() => {
-        const savedData = localStorage.getItem('registration-form');
-        if (savedData) {
-            const parsed = JSON.parse(savedData);
-            Object.keys(parsed).forEach((key) => {
-                methods.setValue(key as keyof RegistrationFormData, parsed[key]);
-            });
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('registration-form', JSON.stringify(formValues));
-    }, [formValues]);
+        const currentValues = methods.getValues();
+        localStorage.setItem('registration-form', JSON.stringify(currentValues));
+    }, [accommodationType, foodPreference, certificateType, materialsKit, networkingDinner, fullName, email, phone, countryCode, country, methods]);
 
     const validateStep = async (step: number): Promise<boolean> => {
         const fieldsPerStep: Record<number, (keyof RegistrationFormData)[]> = {
@@ -171,7 +196,14 @@ export default function Register() {
     };
 
     const onSubmit = async (data: RegistrationFormData) => {
-        setIsSubmitting(true);
+        const navigateToPayment = (state: object) => {
+            localStorage.removeItem('registration-form');
+            // Use setTimeout to ensure navigation happens after current render cycle
+            setTimeout(() => {
+                navigate('/payment', { state, replace: true });
+            }, 0);
+        };
+
         try {
             // Submit to backend API
             const result = await registrationsApi.create({
@@ -180,25 +212,21 @@ export default function Register() {
             });
 
             if (result.success && result.data) {
-                localStorage.removeItem('registration-form');
-                navigate('/payment', {
-                    state: {
-                        registration: data,
-                        pricing: result.data.pricing || pricing,
-                        registrationId: result.data.registrationId,
-                        confirmationNumber: result.data.confirmationNumber
-                    }
+                navigateToPayment({
+                    registration: data,
+                    pricing: result.data.pricing || pricing,
+                    registrationId: result.data.registrationId,
+                    confirmationNumber: result.data.confirmationNumber
                 });
+                return; // Exit early to prevent finally from running setState
             } else {
                 throw new Error(result.error || 'Registration failed');
             }
         } catch (error) {
             console.error('Registration error:', error);
             // Fallback: still navigate to payment with local data
-            localStorage.removeItem('registration-form');
-            navigate('/payment', { state: { registration: data, pricing } });
-        } finally {
-            setIsSubmitting(false);
+            navigateToPayment({ registration: data, pricing });
+            return; // Exit early to prevent finally from running setState
         }
     };
 
